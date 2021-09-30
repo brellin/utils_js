@@ -1,0 +1,16 @@
+{
+  "name": "router-vanilla",
+  "version": "1.0.0",
+  "description": "Vanilla JavaScript router",
+  "main": "Router.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vanilla",
+    "router",
+    "javascript"
+  ],
+  "author": "brellin",
+  "license": "GPL-3.0"
+}
