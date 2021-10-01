@@ -12,5 +12,13 @@
     "javascript"
   ],
   "author": "brellin",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brellin/utils_js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brellin/utils_js/issues"
+  },
+  "homepage": "https://github.com/brellin/utils_js#readme"
 }
