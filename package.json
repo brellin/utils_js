@@ -1,11 +1,8 @@
 {
   "name": "router-vanilla",
   "version": "1.0.0",
-  "description": "Vanilla JavaScript router",
-  "main": "Router.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Vanilla JavaScript router - with abstract view class",
+  "main": "index.js",
   "keywords": [
     "vanilla",
     "router",
@@ -16,9 +13,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brellin/utils_js.git"
-  },
-  "bugs": {
-    "url": "https://github.com/brellin/utils_js/issues"
   },
   "homepage": "https://github.com/brellin/utils_js#readme"
 }

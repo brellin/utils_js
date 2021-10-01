@@ -12,5 +12,6 @@ The router class takes four arguments:
 ## View
 A very simple abstract class
 An implementation of the abstract class - takes one argument, `title` (document title) - will allow you to inherit `baseTitle` using `super()` within the constructor of the extended classes.
+
 The extended classes only require one method to be overwritten -> `renderHTML`, where you can create the HTML to be rendered per route.
 
