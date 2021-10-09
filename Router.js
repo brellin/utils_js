@@ -27,37 +27,51 @@ export default class {
         this.routes.forEach(route => {
 
             const createLink = rt => {
-                const el = document.createElement('a');
-                el.innerText = rt.title;
-                el.classList.add(className);
-                el.href = rt.path;
-                el.addEventListener('click', e => {
+                const link = document.createElement('a');
+                link.innerText = rt.title;
+                link.classList.add(className);
+                link.href = rt.path;
+                link.addEventListener('click', e => {
                     e.preventDefault();
                     this.navigate(e.target.href);
                 });
-                return el;
+                return link;
             };
 
-            this.nav.appendChild(createLink(route));
+            const routeElement = document.createElement('div');
+            routeElement.appendChild(createLink(route));
 
-            if (route.subRoutes) {
+            this.nav.appendChild(routeElement);
+
+            if (route.subRoutes && route.subRoutes.some(r => r.display)) {
                 const subMenu = document.createElement('div');
-                route.subRoutes.forEach(sr => {
+                subMenu.classList.add('SubMenu');
+                routeElement.addEventListener('mouseenter', _ => subMenu.classList.add('hovered'));
+                routeElement.addEventListener('mouseleave', _ => subMenu.classList.remove('hovered'));
+                route.subRoutes.filter(sr => sr.display).forEach(sr => {
                     const subRoute = createLink(sr);
                     subRoute.classList.add(subClassName);
                     subMenu.appendChild(subRoute);
                 });
-                this.nav.appendChild(subMenu);
+                routeElement.appendChild(subMenu);
             }
 
         });
     };
 
-    populateRoute = _ => {
-        const possibleMatches = this.routes.map(route => ({ ...route, isMatch: location.pathname === route.path }));
-        let match = possibleMatches.find(pm => pm.isMatch);
+    /**
+     * Converts a path string to a regular expression
+     * @param {string} path The path to be converted to regex
+     * @returns A path that has been converted to regex
+     */
+    regExPath = path => new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
 
-        if (!match) match = { ...this.routes[ 0 ], isMatch: true };
+    populateRoute = _ => {
+        const possibleMatches = this.routes.map(route => ({
+            ...route,
+            isMatch: location.pathname.match(this.regExPath(route.path))
+        }));
+        const match = possibleMatches.find(pm => pm.isMatch) || { ...this.routes[ 0 ], isMatch: true };
 
         const view = new match.view();
 
@@ -72,8 +86,13 @@ export default class {
 
     handleActiveLink = _ => {
         this.nav.childNodes.forEach(link => {
-            const routeMatch = this.routes.find(route => route.path === location.pathname);
-            if (routeMatch) link.innerText === routeMatch.title ?
+            const routeSearch = [ ...this.routes, ...this.routes.filter(route => route.subRoutes).map(route => route.subRoutes).flat() ];
+            const routeMatch = routeSearch.find(route => route.path === location.pathname);
+            console.log(routeSearch);
+            if (routeMatch) Array.from(link.childNodes).some(node => {
+                console.log(node.innerText, routeMatch.title);
+                return node.innerText === routeMatch.title;
+            }) ?
                 link.classList.add('active') :
                 link.classList.remove('active');
             else link.classList.remove('active');
