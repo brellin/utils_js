@@ -6,7 +6,7 @@ export default class {
      * @param {HTMLElement} display HTML element to contain the area in which the routes will be displayed
      * @param {Array.<{path: string, title: string, view: object, subRoutes: Array.<{path: String, title: String, view: object}>}>} routes array of objects defining the routes as listed
      */
-    constructor(root, nav, display, routes) {
+    constructor(root, nav, display, routes, options) {
         this.root = root;
         this.nav = nav;
         this.display = display;
@@ -14,6 +14,7 @@ export default class {
         this.root.appendChild(this.nav);
         this.root.appendChild(this.display);
         window.addEventListener('popstate', this.populateRoute);
+        this.loadScript = options.loadScript;
         this.addRoutesToNav();
         this.populateRoute();
     }
@@ -77,6 +78,7 @@ export default class {
 
         this.handleActiveLink();
         this.display.innerHTML = view.getHtml();
+        this.loadScript();
     };
 
     navigate = url => {
@@ -88,9 +90,7 @@ export default class {
         this.nav.childNodes.forEach(link => {
             const routeSearch = [ ...this.routes, ...this.routes.filter(route => route.subRoutes).map(route => route.subRoutes).flat() ];
             const routeMatch = routeSearch.find(route => route.path === location.pathname);
-            console.log(routeSearch);
             if (routeMatch) Array.from(link.childNodes).some(node => {
-                console.log(node.innerText, routeMatch.title);
                 return node.innerText === routeMatch.title;
             }) ?
                 link.classList.add('active') :

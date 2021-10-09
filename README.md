@@ -8,6 +8,7 @@ The router class takes four arguments:
 | nav | `DOM Element` | The element the links for the routes will be appended to |
 | display | `DOM Element` | The element the routes will be displayed within |
 | routes | Array of Objects | An array that outlines the routes - to include (optional) sub-routes |
+| options | Object | Currently only accepts `loadScript` to inject a script that you want to run when a route has loaded |
 
 ## View
 A very simple abstract class
