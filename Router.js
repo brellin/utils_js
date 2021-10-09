@@ -6,7 +6,7 @@ export default class {
      * @param {HTMLElement} display HTML element to contain the area in which the routes will be displayed
      * @param {Array.<{path: string, title: string, view: object, subRoutes: Array.<{path: String, title: String, view: object}>}>} routes array of objects defining the routes as listed
      */
-    constructor(root, nav, display, routes, options) {
+    constructor(root, nav, display, routes, options = { loadScript: _ = {} }) {
         this.root = root;
         this.nav = nav;
         this.display = display;
