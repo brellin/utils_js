@@ -76,8 +76,15 @@ export default class {
 
         const view = new match.view();
 
+
         this.handleActiveLink();
         this.display.innerHTML = view.getHtml();
+        document.querySelectorAll('a.internal').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                this.navigate(e.target.href);
+            });
+        });
         this.loadScript();
     };
 
