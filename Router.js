@@ -78,7 +78,7 @@ export default class {
 
 
         this.handleActiveLink();
-        this.display.innerHTML = view.getHtml();
+        this.display.innerHTML = view.renderHtml();
         document.querySelectorAll('a.internal').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
