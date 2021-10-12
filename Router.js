@@ -1,4 +1,14 @@
 export default class {
+    defaults = {
+        options: {
+            loadScript: () => { },
+            topOfPage: {
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            }
+        }
+    };
     /**
      * Constructor for Router class
      * @param {HTMLElement} root HTML element to contain both navigation and routes
@@ -6,7 +16,7 @@ export default class {
      * @param {HTMLElement} display HTML element to contain the area in which the routes will be displayed
      * @param {Array.<{path: string, title: string, view: object, subRoutes: Array.<{path: String, title: String, view: object}>}>} routes array of objects defining the routes as listed
      */
-    constructor(root, nav, display, routes, options = { loadScript: _ => { } }) {
+    constructor(root, nav, display, routes, options) {
         this.root = root;
         this.nav = nav;
         this.display = display;
@@ -14,7 +24,8 @@ export default class {
         this.root.appendChild(this.nav);
         this.root.appendChild(this.display);
         window.addEventListener('popstate', this.populateRoute);
-        this.loadScript = options.loadScript;
+        Object.assign(this.loadScript, defaults.options.loadScript, options.loadScript);
+        Object.assign(this.topOfPage, defaults.options.topOfPage, options.topOfPage);
         this.addRoutesToNav();
         this.populateRoute();
     }
@@ -76,9 +87,9 @@ export default class {
 
         const view = new match.view();
 
-
         this.handleActiveLink();
         this.display.innerHTML = view.renderHtml();
+        window.scrollTo(this.topOfPage);
         document.querySelectorAll('a.internal').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
@@ -106,4 +117,4 @@ export default class {
         });
     };
 
-}
+};
