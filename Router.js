@@ -24,8 +24,8 @@ export default class {
         this.root.appendChild(this.nav);
         this.root.appendChild(this.display);
         window.addEventListener('popstate', this.populateRoute);
-        Object.assign(this.loadScript, defaults.options.loadScript, options.loadScript);
-        Object.assign(this.topOfPage, defaults.options.topOfPage, options.topOfPage);
+        Object.assign(this.loadScript, this.defaults.options.loadScript, options.loadScript);
+        Object.assign(this.topOfPage, this.defaults.options.topOfPage, options.topOfPage);
         this.addRoutesToNav();
         this.populateRoute();
     }
