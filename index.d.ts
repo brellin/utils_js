@@ -4,13 +4,13 @@ export class View {
     renderHtml(): string;
 }
 
-export type Route = {
+declare type Route = {
     title: string;
     path: string;
     view: View;
 }
 
-export type RouterOptions = {
+declare type RouterOptions = {
     loadScript: function;
     topOfPage: {
         top: number;
