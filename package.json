@@ -14,5 +14,8 @@
     "type": "git",
     "url": "git+https://github.com/brellin/utils_js.git"
   },
-  "homepage": "https://github.com/brellin/utils_js#readme"
+  "homepage": "https://github.com/brellin/utils_js#readme",
+  "devDependencies": {
+    "jest": "^27.2.5"
+  }
 }
