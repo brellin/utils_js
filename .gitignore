@@ -1,3 +1,7 @@
+node_modules/
 .vscode/
 variables.*
-node_modules/
+
+jest.config.js
+test/
+*.test.*
