@@ -11,7 +11,7 @@ declare type Route = {
 }
 
 declare type RouterOptions = {
-    loadScript: function;
+    loadScript: Function;
     topOfPage: {
         top: number;
         left: number;

@@ -4,7 +4,10 @@ module.exports = {
     entry: './index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'router_vanilla.js',
-        library: 'router_vanilla'
-    }
+        filename: 'router-vanilla.js',
+        library: {
+            name: 'routerVanilla',
+            type: 'umd',
+        },
+    },
 };
