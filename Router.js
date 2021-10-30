@@ -78,7 +78,7 @@ export default class {
      */
     regExPath = path => new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
 
-    populateRoute = _ => {
+    populateRoute = async _ => {
         const possibleMatches = this.routes.map(route => ({
             ...route,
             isMatch: location.pathname.match(this.regExPath(route.path))
@@ -88,7 +88,7 @@ export default class {
         const view = new match.view();
 
         this.handleActiveLink();
-        this.display.innerHTML = view.renderHtml();
+        this.display.innerHTML = await view.renderHtml();
         window.scrollTo(this.topOfPage);
         document.querySelectorAll('a.internal').forEach(link => {
             link.addEventListener('click', e => {
