@@ -15,7 +15,7 @@ export default class {
         document.title = `${ this.baseTitle }${ titleMod ? ` - ${ titleMod }` : '' }`;
     }
 
-    renderHTML() {
+    async renderHTML() {
         return "";
     }
 
