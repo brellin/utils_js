@@ -1,6 +1,6 @@
 {
   "name": "router-vanilla",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Vanilla JavaScript router - with abstract view class",
   "main": "./dist/router-vanilla.js",
   "module": "./index.js",
