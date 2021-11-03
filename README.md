@@ -10,7 +10,7 @@ The router class takes four arguments:
 | routes | Array of Objects | An array that outlines the routes - to include (optional) sub-routes |
 | options | Object | Currently only accepts `loadScript` and `topOfPage` to inject a script that you want to run when a route has loaded |
 
-Routes object schema:
+Routes object constructor schema:
 ```
 {
     path: String,
@@ -20,14 +20,16 @@ Routes object schema:
         path: String,
         title: String,
         view: View Class
-    }]
+    }],
+    display?: Boolean (defaults to true),
+    loadScript?: Function
 }
 ```
 
 Options object schema:
 ```
 {
-    loadScript: Function,
+    loadScript?: Function,
     topOfPage: {
         top: Number,
         left: Number,

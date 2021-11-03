@@ -38,7 +38,7 @@ export default class {
     addRoutesToNav = (className = 'NavLink', subClassName = 'Sub') => {
         this.routes.forEach(route => {
 
-            if (!route.display) return;
+            if (route.hasOwnProperty('display') && route.display === false) return;
 
             const createLink = rt => {
                 const link = document.createElement('a');
