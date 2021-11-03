@@ -1,13 +1,14 @@
 export class View {
-    constructor(baseTitle: string);
-    setTitle(titleMod?: string): void;
-    renderHtml(): string;
+    constructor(baseTitle: String);
+    setTitle(titleMod?: String): void;
+    renderHtml(): String;
 }
 
 declare type Route = {
-    title: string;
-    path: string;
+    title: String;
+    path: String;
     view: View;
+    loadScript?: Function;
 }
 
 declare type RouterOptions = {

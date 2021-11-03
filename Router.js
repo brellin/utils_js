@@ -14,7 +14,7 @@ export default class {
      * @param {HTMLElement} root HTML element to contain both navigation and routes
      * @param {HTMLElement} nav HTML element to contain the navigation, usually a nav tag
      * @param {HTMLElement} display HTML element to contain the area in which the routes will be displayed
-     * @param {Array.<{path: string, title: string, view: object, subRoutes: Array.<{path: String, title: String, view: object}>}>} routes array of objects defining the routes as listed
+     * @param {Array.<{path: string, title: string, view: object, subRoutes: Array.<{path: String, title: String, view: object}>, loadScript?: Function}>} routes array of objects defining the routes as listed
      */
     constructor(root, nav, display, routes, options) {
         this.root = root;
@@ -89,6 +89,7 @@ export default class {
 
         this.handleActiveLink();
         this.display.innerHTML = await view.renderHtml();
+        if (match.loadScript) match.loadScript();
         window.scrollTo(this.topOfPage);
         document.querySelectorAll('a.internal').forEach(link => {
             link.addEventListener('click', e => {
